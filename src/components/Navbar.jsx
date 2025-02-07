@@ -1,7 +1,7 @@
 function Navbar() {
   return (
     <>
-      <div className="navbar bg-[#5CA5A5] py-14"></div>
+      <div className="navbar bg-[#5CA5A5] py-14 "></div>
       <div className="bg-white p-4 rounded-lg shadow-md  items-center justify-between align-elements hidden">
         {/* Filterlar ro‘yxati */}
         <div className="flex gap-3">

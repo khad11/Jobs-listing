@@ -5,7 +5,6 @@ import { useFetch } from "../hooks/useFetch";
 function Home() {
   const apiUrl = import.meta.env.VITE_API_KEY;
   const [url, setUrl] = useState(apiUrl);
-  const [language, setLanguage] = useState(null);
 
   const { data } = useFetch(url);
 
