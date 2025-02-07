@@ -3,9 +3,10 @@ import { useState } from "react";
 import { useFetch } from "../hooks/useFetch";
 
 function Home() {
-  const [url, setUrl] = useState(
-    "https://json-api.uz/api/project/job-list/jobs"
-  );
+  const apiUrl = import.meta.env.VITE_API_KEY;
+  const [url, setUrl] = useState(apiUrl);
+  const [language, setLanguage] = useState(null);
+
   const { data } = useFetch(url);
 
   if (!data)
@@ -19,6 +20,17 @@ function Home() {
     );
 
   const jobs = Array.isArray(data.data) ? data.data : [];
+
+  // set language to Localstorage
+  const setLangugeToLocalStorrage = (lan) => {
+    let storedLanguage =
+      JSON.parse(localStorage.getItem("selectedLanguages")) || [];
+
+    if (!storedLanguage.includes(lan)) {
+      storedLanguage.push(lan);
+      localStorage.setItem("selectedLanguages", JSON.stringify(storedLanguage));
+    }
+  };
 
   return (
     jobs &&
@@ -72,6 +84,7 @@ function Home() {
             {job.languages.map((lan) => (
               <button
                 key={lan}
+                onClick={() => setLangugeToLocalStorrage(lan)}
                 className="bg-[#EEF6F6] text-[#5CA5A5] px-4 py-2 rounded font-medium hover:bg-[#5CA5A5] hover:text-white transition-colors"
               >
                 {lan}
