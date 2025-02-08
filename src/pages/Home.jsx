@@ -53,7 +53,7 @@ function Home() {
       {!data ? (
         <div className="flex items-center justify-center min-h-screen bg-gray-100">
           <div className="flex flex-col items-center">
-            <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-blue-500 border-solid"></div>
+            <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-gray-200 border-solid"></div>
             <p className="mt-4 text-lg text-gray-600 font-medium">Loading...</p>
           </div>
         </div>
@@ -78,7 +78,7 @@ function Home() {
                         JSON.stringify(updatedLanguages)
                       );
                     }}
-                    className="bg-[#2B3939] text-white w-6 h-6 rounded-full flex items-center justify-center"
+                    className="bg-[#dbdbdb] text-white w-6 h-6 rounded-full flex items-center justify-center"
                   >
                     ✖
                   </button>
@@ -96,15 +96,22 @@ function Home() {
           {filteredJobs.map((job) => (
             <div
               key={job.id}
-              className="bg-white rounded-lg shadow-lg p-8 flex items-center justify-between mb-5 mt-14 align-elements"
+              className="bg-white rounded-lg shadow-lg p-8 flex flex-col md:flex-row items-center justify-between mb-5 mt-14"
             >
-              <div className="flex items-center gap-6">
-                <div className="w-20 h-20 bg-black rounded-full flex items-center justify-center text-white text-xs">
-                  <img src={job.logo} alt="logo" />
+              {/* Chap qism: Kompaniya logotipi va ish haqida ma'lumot */}
+              <div className="flex flex-col md:flex-row items-center gap-6 w-full">
+                {/* Kompaniya logotipi */}
+                <div className="w-20 h-20 bg-black rounded-full flex items-center justify-center text-white text-xs flex-shrink-0">
+                  <img
+                    src={job.logo}
+                    alt="logo"
+                    className="w-full h-full object-contain"
+                  />
                 </div>
 
-                <div className="space-y-2">
-                  <div className="flex items-center gap-2">
+                {/* Ish haqida ma'lumot */}
+                <div className="space-y-2 text-center md:text-left w-full">
+                  <div className="flex items-center justify-center md:justify-start gap-2">
                     <span className="text-[#5CA5A5] font-medium">
                       {job.company}
                     </span>
@@ -122,17 +129,19 @@ function Home() {
                   <h2 className="text-xl font-bold text-[#2B3939] hover:text-[#5CA5A5] cursor-pointer">
                     {job.position}
                   </h2>
-                  <div className="flex items-center text-[#7C8F8F]">
+                  <div className="flex  md:flex-row items-center justify-center gap-3  md:justify-start text-[#7C8F8F]">
                     <span>{job.postedAt}</span>
-                    <span className="w-1 h-1 bg-current rounded-full mx-4" />
+                    {/* Ushbu nuqta faqat md va undan yuqori o'lchamlarda ko'rsatiladi */}
+                    <span className="w-1 h-1 bg-current rounded-full mx-4 hidden md:inline-block" />
                     <span>{job.contract}</span>
-                    <span className="w-1 h-1 bg-current rounded-full mx-4" />
+                    <span className="w-1 h-1 bg-current rounded-full mx-4 hidden md:inline-block" />
                     <span>{job.location}</span>
                   </div>
                 </div>
               </div>
 
-              <div className="flex gap-4">
+              {/* O'ng qism: Ish uchun kerakli tillar */}
+              <div className="flex gap-4 mt-4 md:mt-0">
                 {job.languages.map((lan) => (
                   <button
                     key={lan}
