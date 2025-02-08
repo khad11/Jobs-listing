@@ -96,7 +96,7 @@ function Home() {
           {filteredJobs.map((job) => (
             <div
               key={job.id}
-              className="bg-white rounded-lg shadow-lg p-8 flex flex-col md:flex-row items-center justify-between mb-5 mt-14"
+              className="  align-elements bg-white rounded-lg shadow-lg p-8 flex flex-col md:flex-row items-center justify-between mb-5 mt-14"
             >
               {/* Chap qism: Kompaniya logotipi va ish haqida ma'lumot */}
               <div className="flex flex-col md:flex-row items-center gap-6 w-full">
